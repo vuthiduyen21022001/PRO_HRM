@@ -45,6 +45,9 @@ export default function LoginPage() {
     };
     login(newUser);
   };
+  const handleRegister =()=>{
+    history("/register")
+  }
   return (
     <div className="main">
       <div className="center">
@@ -73,7 +76,7 @@ export default function LoginPage() {
             Đăng nhập
           </button>
           <div class="signup_link">
-            Không phải là thành viên? <a href="#">Đăng ký</a>
+            Không phải là thành viên? <a onClick={handleRegister} href="#">Đăng ký</a>
           </div>
         </form>
       </div>

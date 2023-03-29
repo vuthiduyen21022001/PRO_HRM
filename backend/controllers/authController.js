@@ -77,6 +77,7 @@ export const logOut = async (req, res) => {
   refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
   res.clearCookie("refreshToken");
   res.status(200).json("Logged out successfully!");
+  
 };
 
 export const requestRefreshToken = async (req, res) => {

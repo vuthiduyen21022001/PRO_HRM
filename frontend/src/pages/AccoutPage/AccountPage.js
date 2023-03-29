@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 
-import {Button, Table, Tag} from "antd";
+import {Button, message, Table, Tag} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {getListDepartment} from "../../redux/departmentSlice";
 import {useNavigate} from "react-router-dom";
@@ -47,19 +47,19 @@ export default function AccountPage() {
     userService
       .userList(user.accessToken)
       .then((res) => {
-        let departmentList = res.data.map((depart) => {
+        let AcoutList = res.data.map((data) => {
           return {
-            ...depart,
+            ...data,
             action: (
               <Action
                 // onSuccess={fetchListUser}
-                department={depart._id}
+                id={data._id}
               />
             ),
           };
         });
 
-        dispatch(getUserSuccess(departmentList));
+        dispatch(getUserSuccess(AcoutList));
       })
 
       .catch((err) => {
@@ -83,12 +83,15 @@ export default function AccountPage() {
   );
 }
 
-const Action = ({department}) => {
+const Action = ({id}) => {
   const navigate = useNavigate();
 
   const handleEditUser = () => {
-    navigate(`/createdepartment/${department}`);
+    navigate(`/editaccount/${id}`);
   };
+
+
+
   return (
     <div className="space-x-5">
       <Button
@@ -103,7 +106,8 @@ const Action = ({department}) => {
       >
         Sửa
       </Button>
-      <Button type="primary" danger>
+      {/* onClick={handleDeleteUser} */}
+      <Button  type="primary" danger>
         Xóa
       </Button>
     </div>

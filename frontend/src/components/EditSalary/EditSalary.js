@@ -1,11 +1,11 @@
-import {message} from "antd";
-import React, {useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import { message } from "antd";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux";
-import {updateError, updateStart, updateSuccess} from "../../redux/salarySlice";
-import {salaryService} from "../../services/salari.service";
-import {Input, Label} from "../Employee/Forms";
+import { useDispatch, useSelector } from "react-redux";
+import { updateError, updateStart, updateSuccess } from "../../redux/salarySlice";
+import { salaryService } from "../../services/salari.service";
+import { Input, Label } from "../Employee/Forms";
 // import {updateError, updateStart, updateSuccess} from "../../redux/salarySlice";
 // import {salaryService} from "../../services/salari.service";
 
@@ -41,7 +41,7 @@ export default function EditSalary() {
   const dispatch = useDispatch();
   const history = useNavigate();
 
-  const {id} = useParams();
+  const { id } = useParams();
 
   const data = useSelector((state) => {
     return state.salarySlice.updateSalary;
@@ -49,6 +49,8 @@ export default function EditSalary() {
   const [salary, setSalary] = useState(data.salary);
   const [bonus, setBonus] = useState(data.bonus);
   const [deduction, setDeduction] = useState(data.deduction);
+  const [tax, setTax] = useState("");
+  const [total_salary, setTotal_salary] = useState("");
 
   const updateSalary = async (salary) => {
     dispatch(updateStart());
@@ -69,6 +71,8 @@ export default function EditSalary() {
       salary: salary,
       bonus: bonus,
       deduction: deduction,
+      tax: tax,
+      total_salary: total_salary,
     };
     updateSalary(update);
   };
@@ -97,6 +101,20 @@ export default function EditSalary() {
           value={deduction}
           onChange={(event) => setDeduction(event.target.value)}
         />
+        <Label>Thuế</Label>
+        <Input
+          type="text"
+          placeholder="Thuế"
+          value={tax}
+          onChange={(event) => setTax(event.target.value)}
+        />
+        {/* <Label>Tổng Lương</Label>
+        <Input
+          type="text"
+          placeholder="Tổng Lương"
+          value={total_salary}
+          onChange={(event) => setTotal_salary(event.target.value)}
+        /> */}
         <Button type="submit">Lưu</Button>
       </Form>
     </>

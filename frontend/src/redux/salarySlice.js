@@ -16,6 +16,8 @@ const initialState = {
     salary: 1000,
     bonus: 1000,
     deduction: 1000,
+    tax:1000,
+    totalSalary:1000,
     pending: false,
     error: false,
   },
@@ -62,6 +64,8 @@ export const salarySlice = createSlice({
       state.updateSalary.salary = action.payload.salary;
       state.updateSalary.bonus = action.payload.bonus;
       state.updateSalary.deduction = action.payload.deduction;
+      state.updateSalary.tax = action.payload.tax;
+      state.updateSalary.totalSalary = action.payload.totalSalary;
     },
   },
 });

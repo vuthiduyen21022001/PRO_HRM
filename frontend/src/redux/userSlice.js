@@ -24,6 +24,21 @@ const initialState = {
     isFetching: false,
     error: false,
   },
+  userId: {
+    oneUser: null,
+    isFetching: false,
+    error: false,
+  },
+  updateUser: {
+    username: "",
+    password: "",
+    email: "",
+    admin: "",
+    employee_id: "",
+    pending: false,
+    error: false,
+  },
+  msg: "",
 };
 
 export const userSlice = createSlice({
@@ -42,6 +57,22 @@ export const userSlice = createSlice({
       state.postUser.isFetching = false;
       state.postUser.error = true;
       state.postUser.success = false;
+    },
+    updateStart: (state) => {
+      state.updateUser.pending = true;
+    },
+    updateError: (state) => {
+      state.updateUser.pending = false;
+      state.updateUser.error = true;
+    },
+    updateSuccess: (state, action) => {
+      state.updateUser.pending = false;
+      state.updateUser.error = false;
+      state.updateUser.username = action.payload.username;
+      state.updateUser.password = action.payload.password;
+      state.updateUser.email = action.payload.email;
+      state.updateUser.admin = action.payload.admin; 
+      state.updateUser.employee_id = action.payload.employee_id; 
     },
     loginStart: (state) => {
       state.login.isFetching = true;
@@ -85,6 +116,17 @@ export const userSlice = createSlice({
       state.users.isFetching = false;
       state.users.error = true;
     },
+    getUserIdStart: (state) => {
+      state.userId.isFetching = true;
+    },
+    getUserIdSuccess: (state, action) => {
+      state.userId.isFetching = false;
+      state.userId.oneUser = action.payload;
+    },
+    getUserIdFailed: (state) => {
+      state.userId.isFetching = false;
+      state.userId.error = true;
+    },
   },
 });
 
@@ -92,6 +134,9 @@ export const {
   postUserStart,
   postUserSuccess,
   postUserFailed,
+  updateStart,
+  updateSuccess,
+  updateError,
   loginStart,
   loginSuccess,
   loginFailed,
@@ -101,6 +146,9 @@ export const {
   getUserStart,
   getUserSuccess,
   getUserFailed,
+  getUserIdStart,
+  getUserIdSuccess,
+  getUserIdFailed,
   getListUser,
   setUserInfor,
 } = userSlice.actions;

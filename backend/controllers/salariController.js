@@ -6,6 +6,8 @@ export const addDepartment = async (req, res) => {
       salary: req.body.salary,
       bonus: req.body.bonus,
       deduction: req.body.deduction,
+      tax:req.body.tax,
+      total_salary:req.body.total_salary,
     });
     const department = await newDepartment.save();
     res.status(200).json(department);
@@ -16,7 +18,7 @@ export const addDepartment = async (req, res) => {
 export const getDepartment = async (req, res) => {
   try {
     // find: lay all
-    const department = await SalaryModel.find();
+    const department = await SalaryModel.find().sort({createdAt:-1});
     // console.log("employee", employee);
     res.status(200).json(department);
   } catch (error) {
@@ -30,6 +32,8 @@ export const editDepartment = async (req, res) => {
       salary: req.body.salary,
       bonus: req.body.bonus,
       deduction: req.body.deduction,
+      tax:req.body.tax,
+      total_salary:req.body.total_salary,
     };
     await SalaryModel.findByIdAndUpdate(id, {$set: department}, {new: true});
     res.json({status: "Departmen Updated"});

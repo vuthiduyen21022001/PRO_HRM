@@ -1,11 +1,11 @@
 import express from "express";
-import {addUser} from "../controllers/userController.js";
+import {addUser, deleteUser, editUser, getId} from "../controllers/userController.js";
 
 const userRouter = express.Router();
 
 userRouter.post("/ThemNhanVien", addUser);
-// userRouter.get("/LayDanhNhanVien", getEmployee);
-// employeeRouter.delete("/XoaLuong/:id", deleteDepartment);
-// employeeRouter.put("/CapNhapThongTinLuong/:id", editDepartment);
+userRouter.get("/LayThongTinNguoiDung/:id", getId);
+userRouter.delete("/XoaNguoiDung/:id", deleteUser);
+userRouter.put("/CapNhapThongTinNguoiDung/:id", editUser);
 
 export default userRouter;

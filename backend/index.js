@@ -16,7 +16,7 @@ const PORT = process.env.port || 5000;
 
 // Khai báo biến URL để lưu đường dẫn đến cơ sở dữ liệu MongoDB
 const URL =
-  "mongodb+srv://dieuplot1999:IHrtytYwcILH2ETO@cluster.35tioyh.mongodb.net/HRM?retryWrites=true&w=majority";
+  "mongodb+srv://vuduyen:6Ur0pky8enXUGs6t@cluster.35tioyh.mongodb.net/HRM?retryWrites=true&w=majority";
 
 // Thiết lập middleware để xử lý dữ liệu POST được gửi đến từ client
 app.use(bodyParser.json({limit: "30mb"}));

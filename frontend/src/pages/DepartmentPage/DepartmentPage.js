@@ -37,7 +37,7 @@ export default function DepartmentPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => {
-    return state.departmentSlice.departments.allDepartments;
+    return state.departmentSlice?.departments?.allDepartments;
   });
   const admin = useSelector((state) => state.userSlice.login.currentUser);
 
@@ -47,6 +47,7 @@ export default function DepartmentPage() {
       departmentService
         .getdepartmentList()
         .then((res) => {
+          console.log("data",res.data)
           let departmentList = res.data.map((data) => {
             return {
               ...data,

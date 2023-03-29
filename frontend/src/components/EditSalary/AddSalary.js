@@ -18,18 +18,35 @@ import {FormGroup, Input, Label} from "../Employee/Forms";
 // import {updateError, updateStart, updateSuccess} from "../../redux/salarySlice";
 // import {salaryService} from "../../services/salari.service";
 
+// const Form = styled.form`
+//   /* display: flex; */
+//   justify-content: center;
+//   margin-top: 60px;
+//   width: 300px;
+//   /* .form_left {
+//     width: 340px;
+//   }
+//   .form_right {
+//     width: 340px;
+//     margin-left: 47px;
+//   } */
+// `;
 const Form = styled.form`
-  /* display: flex; */
-  justify-content: center;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
   width: 300px;
-  /* .form_left {
-    width: 340px;
+`;
+const Button = styled.button`
+  padding: 8px 16px;
+  font-size: 16px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #0069d9;
   }
-  .form_right {
-    width: 340px;
-    margin-left: 47px;
-  } */
 `;
 // const Label = styled.label`
 //   margin-bottom: 0.5em;
@@ -65,6 +82,8 @@ export default function AddSalary() {
   const [salary, setSalary] = useState("");
   const [bonus, setBonus] = useState("");
   const [deduction, setDeduction] = useState("");
+  const [tax,setTax] = useState("");
+  const [total_salary,setTotal_salary] = useState("");
 
   const post = async (salary) => {
     dispatch(salaryStart());
@@ -85,11 +104,18 @@ export default function AddSalary() {
       salary: salary,
       bonus: bonus,
       deduction: deduction,
+      tax: tax,
+      total_salary: total_salary,
     };
     post(update);
   };
   return (
+    <>
+          <h2>Thêm thông tin lương</h2>
+
+
     <Form onSubmit={handleSubmit}>
+
       <Label>Lương </Label>
       <Input
         type="text"
@@ -111,7 +137,24 @@ export default function AddSalary() {
         value={deduction}
         onChange={(event) => setDeduction(event.target.value)}
       />
-      <button type="submit">Lưu</button>
+       <Label>Thuế</Label>
+        <Input
+        type="text"
+        placeholder="Thuế"
+        value={tax}
+        onChange={(event) => setTax(event.target.value)}
+        />
+          {/* <Label>Tổng Lương</Label>
+        <Input
+        type="text"
+        placeholder="Tổng Lương"
+        value={total_salary}
+        onChange={(event) => setTotal_salary(event.target.value)}
+        /> */}
+        
+     <Button type="submit">Lưu</Button>
+
     </Form>
+    </>
   );
 }

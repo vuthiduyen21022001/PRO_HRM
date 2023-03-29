@@ -1,8 +1,8 @@
-import {https} from "./configURL";
+import { https } from "./configURL";
 
 export const userService = {
-  getUserList: () => {
-    return https.get("/QuanLyNguoiDung/listEmployee");
+  getUserListId: (id) => {
+    return https.get(`/QuanLyNguoiDung/LayThongTinNguoiDung/${id}`);
   },
   postUser: (value) => {
     return https.post("/QuanLyNguoiDung/ThemNhanVien", value);
@@ -18,7 +18,11 @@ export const userService = {
   },
   userList: (accessToken) => {
     return https.get("/QuanLyNguoiDung/LayDanhSachNguoiDung", {
-      headers: {token: `Bearer ${accessToken}`},
+      headers: { token: `Bearer ${accessToken}` },
     });
   },
+  updateUser: (id, value) => {
+    return https.put(`/QuanLyNguoiDung/CapNhapThongTinNguoiDung/${id}`, value)
+  },
+  
 };

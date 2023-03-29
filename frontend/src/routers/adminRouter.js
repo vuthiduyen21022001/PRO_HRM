@@ -1,4 +1,5 @@
 import AddAcount from "../components/Account/AddAcount";
+import EditAcount from "../components/Account/EditAcount";
 import AddDepartment from "../components/Department/AddDepartment";
 import EditDepartment from "../components/Department/EditDepartment";
 import AddSalary from "../components/EditSalary/AddSalary";
@@ -59,6 +60,10 @@ export const adminRouter = [
   {
     path: "/addaccount",
     Component: AddAcount,
+  },
+  {
+    path: "/editaccount/:id",
+    Component: EditAcount,
   },
   {
     path: "/account",

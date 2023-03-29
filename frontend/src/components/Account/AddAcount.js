@@ -93,7 +93,7 @@ export default function AddPosition() {
   };
   return (
     <>
-      <h2>Thêm thông tin chức vụ</h2>
+      <h2>Thêm thông tin tài khoản</h2>
       <Form onSubmit={handleSubmit}>
         <Label>Tên đăng nhập</Label>
         <Input

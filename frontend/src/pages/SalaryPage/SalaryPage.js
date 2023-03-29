@@ -27,16 +27,19 @@ const columns = [
     dataIndex: "deduction",
     key: "deduction",
   },
-  // {
-  //   title: "tax",
-  //   dataIndex: "tax",
-  //   key: "tax",
-  // },
-  // {
-  //   title: "total_salary",
-  //   dataIndex: "total_salary",
-  //   key: "total_salary",
-  // },
+  {
+    title: "tax",
+    dataIndex: "tax",
+    key: "tax",
+  },
+  {
+    title: "total_salary",
+    dataIndex: "total_salary",
+    key: "total_salary",
+      render: (text, record) => (
+      <span>{record.salary + record.bonus + record.deduction - record.tax}</span>
+    ),
+  },
   {
     title: "Action",
     dataIndex: "action",

@@ -13,8 +13,17 @@ const SalarySchema = new mongoose.Schema(
       type: "number",
       required: true,
     },
+    tax: {
+      type: 'number',
+      required: true,
+    },
+    total_salary: {
+      type: 'number',
+      // required: true,
+    },
+
   },
-  {timestamps: true}
+  { timestamps: true }
 );
 
 export const SalaryModel = mongoose.model("Salari", SalarySchema);
